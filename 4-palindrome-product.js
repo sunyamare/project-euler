@@ -7,12 +7,12 @@ var i;
 var number1 = 1;
 var number2 = 1;
 var product = 0;
-var multiplicator = 0;
+var multiplier = 0;
 
 function reverse(n) //reverse number
 {
-	n = n + "";
-	return n.split("").reverse().join("");
+	n = n + ""; // make a string
+	return n.split("").reverse().join(""); 
 }
 // console.log(reverse(1234));
 
@@ -21,11 +21,10 @@ for (i = 1; i < 100000000 && number1 < 1000 && number2 < 1000; i++) {
     number2 += i;
     if (number1 * number2 == reverse(number1 * number2)) {
         product = number1 * number2;
-        multiplicator = number1;
+        multiplier = number1;
     }
     // console.log("i", i)
 }
-
 console.log("Product (palindrom): " + product);
-console.log("Multiplicator: " + multiplicator);
+console.log("Multiplier: " + multiplier);
 

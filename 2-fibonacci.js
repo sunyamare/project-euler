@@ -5,7 +5,7 @@ By considering the terms in the Fibonacci sequence whose values do not exceed fo
 // as long as the value is < 4000000 sum up all even numbers in the fibonacci sequence
 // which loop ... while / for / ? -> for loop when # of iterations is clear, otherwise while loop
 
-// Tips: recursion -> use functions, find out the number of cycles and use memoization 
+// Tips: recursion -> use functions, find out the number of cycles and use memorization 
 
 var i;
 var var1 = 0;
@@ -15,8 +15,8 @@ var result = 0;
 for (i = 1; i < 10000000000 && var2 < 4000000; i++) { 
     var1 += var2;
     var2 += var1;
-    // console.log("Fibonacci var1: " + var1);
-    // console.log("Fibonacci var2: " + var2);
+    // console.log("var1: " + var1);
+    // console.log("var2: " + var2);
     if (var2 < 4000000) {
         if (var1 % 2 == 0) {
             // console.log("div Fibonacci var1: " + var1);  
