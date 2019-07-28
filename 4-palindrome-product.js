@@ -12,7 +12,7 @@ var multiplier = 0;
 function reverse(n) //reverse number
 {
 	n = n + ""; // make a string
-	return n.split("").reverse().join(""); 
+	return n.split("").reverse().join(""); // split every character, reverse all, join every character
 }
 // console.log(reverse(1234));
 
