@@ -13,12 +13,14 @@ for (number = numberMin; number <= numberMax && stopVariable == 0; number++) {
     // console.log("number: " + number);
     for (divisor = divisorMin; divisor <= divisorMax; divisor++) {
         // console.log(" divisor: " + divisor);
-        if (number % divisor == 0) {
+        if (number % divisor != 0) {
+            break; // to optimize performance
+        } else { 
             // console.log("  counter: " + counter);
             counter++;
             if(counter == divisorMax) {
                 stopVariable = 1;
-                console.log("-------> result: " + number); // answer: 232792560 (took 24s to calculate/run)
+                console.log("-------> result: " + number); // 232792560
             }
         }
     }
