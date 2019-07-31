@@ -28,7 +28,7 @@ const makePrimeArray = amount => {
         if (isPrime(n)) {
             primeArray.push(n);
         }
-    }
+    };
     return primeArray;
 };
 // console.log(makePrimeArray(4)); // [ 2, 3, 5, 7 ]
