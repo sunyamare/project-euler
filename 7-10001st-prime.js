@@ -6,7 +6,7 @@ const primeNumber = 10001;
 const isPrime = number => {
     let hasRemainder = 0;
     // console.log(`number: ${number}`);
-    for (i = 1; i <= number; i++) {
+    for (let i = 1; i <= number; i++) {
         // console.log(`i: ${i}`);
         if (hasRemainder > 2) {
             break;
@@ -23,7 +23,7 @@ const isPrime = number => {
 // function to add x primes to an array
 const makePrimeArray = amount => {
     let primeArray = [];
-    for (n = 1; primeArray.length < amount; n++) {
+    for (let n = 1; primeArray.length < amount; n++) {
         // console.log(`n: ${n}`);
         if (isPrime(n)) {
             primeArray.push(n);
