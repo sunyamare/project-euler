@@ -6,9 +6,9 @@ const primeNumber = 10001;
 const isPrime = number => {
     let hasRemainder = 0;
     // console.log(`number: ${number}`);
-    for (i = 2; i <= number; i++) {
+    for (i = 1; i <= number; i++) {
         // console.log(`i: ${i}`);
-        if (hasRemainder > 1) {
+        if (hasRemainder > 2) {
             break;
         }
         if (!(number % i)) {
@@ -16,7 +16,7 @@ const isPrime = number => {
             // console.log(`totalRest: ${hasRemainder}`);
         }
     };
-    return hasRemainder == 1 ? true : false;
+    return hasRemainder == 2 ? true : false;
 };
 // console.log(isPrime(5)); // true
 
