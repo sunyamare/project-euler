@@ -11,7 +11,7 @@ console.log(`initial number length: ${tDA.length}`)
 // console.log(tDA[0]) // 7
 // console.log(tDA[999]) // 0
 
-const adjacentDigits = 13 // defines how many adjacent digits we want to find the highest 
+const adjacentDigits = 13 // defines how many adjacent digits we want to find the biggest product for
 console.log(`number of adjacent digits: ${adjacentDigits}`)
 
 const numberOfAdjacentDigitArrays = tDA.length - 4 + 1
@@ -28,15 +28,15 @@ const buildAdjacentDigitArrays = (howManyArrays, initialNumberArray, numberGroup
             tempArray.push(initialNumberArray[i])
         }
         tempArray = tempArray.map(Number);
-        tempArray = tempArray.reduce( (a,b) => a * b )
+        tempArray = tempArray.reduce( (a,b) => a * b ) // combine array elements to one
         // console.log(tempArray)
         numberGroupArray.push(tempArray)
     }
-    numberGroupArray.sort((a, b) => b - a)
+    numberGroupArray.sort((a, b) => b - a) // sort descending (numerically)
     // console.log(`after loops and sorting numberGroupArray: ${numberGroupArray}`)
     result = numberGroupArray[0]
     return result
 }
-const biggestFactor = buildAdjacentDigitArrays(numberOfAdjacentDigitArrays, tDA, adjacentDigits)
+const biggestProduct = buildAdjacentDigitArrays(numberOfAdjacentDigitArrays, tDA, adjacentDigits)
 
-console.log(`largest product: ${biggestFactor}`)
+console.log(`biggest product: ${biggestProduct}`)
