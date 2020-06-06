@@ -12,7 +12,25 @@ a = 22 − 12 = 4 − 1 = 3
 b = 2 × 2 × 1 = 4
 c = 22 + 12 = 4 + 1 = 5
 Thus, we obtain the first Pythagorean Triple (3,4,5).
+
+- m & n generator function where b & c are never more than target sum / 3
+  - increase m (larger number) to max
+  - increase n by 1 and continue with increasing m to max
+  - do until all options are generated
+  - return m & n combinations in an array of objects
+- triplet generator function using the m & n array of objects
+  - one by one, use m & n objects to generate a triplet and sum their values 
+  - if sum > target sum, break
+  - if sum < target sum, sum a multiple of the triplet, repeat above step
+  - if sum = target sum, return triplet
 */
+
+const returnTripletsWhichSumsTo = (sum) => {
+  return sum;
+};
+console.log(returnTripletsWhichSumsTo(1000));
+
+/*
 const findTheTriplet = () => {
     const maxA = 350;
     const maxB = 400;
@@ -53,3 +71,4 @@ const findTheTriplet = () => {
     }
 };
 findTheTriplet();
+*/
