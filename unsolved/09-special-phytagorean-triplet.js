@@ -13,15 +13,14 @@ b = 2 × 2 × 1 = 4
 c = 22 + 12 = 4 + 1 = 5
 Thus, we obtain the first Pythagorean Triple (3,4,5).
 >>> game plan:
-- m & n generator function where b & c are never more than target sum / 3
+- triplet generator function
   - increase m (larger number) to max
   - increase n by 1 and continue with increasing m to max
   - do until all options are generated
-  - return m & n combinations in an array of objects
-- triplet generator function using the m & n array of objects
-  - one by one, use m & n objects to generate a triplet and sum their values 
-  - if sum > target sum, break
-  - if sum < target sum, sum a multiple of the triplet, repeat above step
+  - return a, b, c combinations in an array of objects
+  - take constraints into account
+- triplet tester function 
+  - if sum < target sum, sum a multiple of the triplet to find target sum
   - if sum = target sum, return triplet
 */
 
@@ -38,60 +37,53 @@ const getC = (m, n) => {
 const tripletGenerator = (max) => {
   let tripletObjectArray = [];
   for (let n = 1; n < max; n++) {
-    // console.log("-- n", n);
     for (let m = n + 1; m < max; m++) {
-      //   console.log("- m", m);
       const a = getA(m, n);
       const b = getB(m, n);
       const c = getC(m, n);
-      //   console.log("max", max);
-      //   console.log("b + c", b + c);
-      if (a > b) break;
-      if (b + c > max) {
-        // console.log("break");
-        break;
-      }
-      //   console.log("b", b);
-      //   console.log("c", c);
-      tripletObjectArray.push({ a: a, b: b, c: c, m: m, n: n });
+      // if (a > b) break;
+      // if (b > c) break;
+      // if (b + c > max) break;
+      if (a + b + c > max) break;
+      const sum = a + b + c;
+      const div = 1000 / sum;
+      const rest = 1000 % sum;
+      tripletObjectArray.push({ a, b, c, sum, div: Math.round(div, 2), rest });
     }
   }
-  console.log(tripletObjectArray);
   return tripletObjectArray;
 };
-/* - triplet generator function using the m & n array of objects
-  - one by one, use m & n objects to generate a triplet and sum their values 
-  - if sum > target sum, break
-  - if sum < target sum, sum a multiple of the triplet, repeat above step
-  - if sum = target sum, return triplet*/
+
 const tripletTester = (tripletObjectArray, maxSum) => {
-  console.log("maxSum", maxSum);
-  tripletObjectArray.forEach((object) => {
-    const tripletSum = object.a + object.b + object.c;
-    console.log("tripletSum", tripletSum);
-    switch (true) {
-      case tripletSum > maxSum:
-        break;
-      case tripletSum === maxSum:
-        return "the solution: ", object.a, object.b, object.c;
-      case tripletSum < maxSum:
-        console.log("here");
-        for (let i = 2; i < maxSum; i++) {
-          console.log("in here");
-          const multiple = tripletSum * i;
-          console.log("multiple", multiple);
-          if (multiple === maxSum) return multiple;
+  // console.log(tripletObjectArray);
+  let resultObject = {};
+  for (let i = 0; i < tripletObjectArray.length; i++) {
+    const { a, b, c } = tripletObjectArray[i];
+    const tripletSum = a + b + c;
+    if (tripletSum === maxSum) {
+      resultObject = { a, b, c };
+      break;
+    } else if (tripletSum < maxSum) {
+      for (let i = 2; i < maxSum; i++) {
+        const multiple = tripletSum * i;
+        if (multiple > maxSum) {
+          break;
         }
-        break;
-      default:
-        return "no solution found";
+        if (multiple === maxSum) {
+          resultObject = { a, b, c };
+          break;
+        }
+      }
+    } else {
+      console.error("smth's odd");
     }
-  });
+  }
+  console.log("resultObject", resultObject);
+  return resultObject;
 };
 
 const returnTripletsWhichSumsTo = (maxSum) => {
-  const tripletObjectArray = tripletGenerator(maxSum / 3);
-  return tripletTester(tripletObjectArray, maxSum);
+  return tripletTester(tripletGenerator(maxSum), maxSum);
 };
-console.log(returnTripletsWhichSumsTo(1000));
-// next: check why m doesn't increase more in triplet generator
+
+returnTripletsWhichSumsTo(1000);
